@@ -27,5 +27,6 @@ bucket = oss2.Bucket(oss2.Auth(access_key_id, access_key_secret), endpoint, buck
 for root, dirs, names in os.walk(pathname):
     for f in names:
         # 上传
-        bucket.put_object(f, os.path.join(root, f))
+        # bucket.put_object(f, os.path.join(root, f))
+        oss2.resumable_upload(bucket, f, os.path.join(root, f))
 
